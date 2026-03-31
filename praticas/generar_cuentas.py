@@ -104,39 +104,47 @@ def show_check (platos):
         contador += 1
         print(f"{contador}. {item['nombre']} - ${item['precio']}")
     
-# Mensajes en la consola
+while True:
 
-print("=== GENERADORA DE CUENTAS DE UN RESTAURANTE ===")
+    # Mensajes en la consola
 
-# Funcion de mostrar el menu 
-show_menu(menu_almuerzos, "Almuerzos")
-show_menu(menu_bebidas, "BEBIDAS")
+    print("=== GENERADORA DE CUENTAS DE UN RESTAURANTE ===")
 
-# Funcion de selecionar los platos 
-print("\nPOR FAVOR SELECCIONE LOS INSUMOS QUE CONSUMIO")
+    # Funcion de mostrar el menu 
+    show_menu(menu_almuerzos, "Almuerzos")
+    show_menu(menu_bebidas, "BEBIDAS")
 
-seleccion = input("Selecciona los items de los alimentos y bebidas que consumiste\nseparados por comas (1,2,3...): ").upper()
-platos_seleccionados = choose_disk(menu_almuerzos, menu_bebidas, seleccion)
+    # Funcion de selecionar los platos 
+    print("\nPOR FAVOR SELECCIONE LOS INSUMOS QUE CONSUMIO")
 
-# Mostrar factura con el valor y propina (si es el caso)
-print("\n === FACTURA ===")
-show_check(platos_seleccionados)
-cuenta = valor_cuenta(platos_seleccionados)
-print(f"Valor de la cuenta es: $ {cuenta:.2f}")
+    seleccion = input("Selecciona los items de los alimentos y bebidas que consumiste\nseparados por comas (1,2,3...): ").upper()
+    platos_seleccionados = choose_disk(menu_almuerzos, menu_bebidas, seleccion)
 
-propina = input("¿Desea agregar propina? (SI/NO): ").upper()
+    # Mostrar factura con el valor y propina (si es el caso)
+    print("\n === FACTURA ===")
+    show_check(platos_seleccionados)
+    cuenta = valor_cuenta(platos_seleccionados)
+    print(f"Valor de la cuenta es: $ {cuenta:.2f}")
 
-if propina == "SI":
-    porcentaje = float(input("Ingrese el porcentaje que desea \n añadir a su propina: %  "))
-else:
-    porcentaje = 0
+    propina = input("¿Desea agregar propina? (SI/NO): ").upper()
 
-valor_propina, valor_total = calcular_valor_propina(cuenta, porcentaje, propina)
+    if propina == "SI":
+        porcentaje = float(input("Ingrese el porcentaje que desea \n añadir a su propina: %  "))
+    else:
+        porcentaje = 0
 
+    valor_propina, valor_total = calcular_valor_propina(cuenta, porcentaje, propina)
 
-if propina == "SI":
-    print(f"Valor propina: $ {valor_propina:.2f}")
-    print(f"El valor total de su factura es: $ {valor_total:.2f}")
-else:
-    print(f"El valor de su cuenta es: $ {cuenta:.2f}")
+    # Validador si el usuario ingresa la propina
+    if propina == "SI":
+        print(f"Valor propina: $ {valor_propina:.2f}")
+        print(f"El valor total de su factura es: $ {valor_total:.2f}")
+    else:
+        print(f"El valor de su cuenta es: $ {cuenta:.2f}")
 
+    # Respuesta para continuar o salir del ciclo 
+    continuar = input("\nDesea hacer generar otra factura? (SI/NO): ").upper()
+
+    if continuar != "SI":
+        print("Gracias por su compra, vuelva pronto 👋")
+        break
