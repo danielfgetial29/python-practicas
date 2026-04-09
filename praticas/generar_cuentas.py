@@ -18,31 +18,18 @@ Proceso que debe seguir el programa
     5. mensaje de gracias por su compra y despedida
 """ 
 
-# diccionarios
-menu_almuerzos = {
-    "A1": {"nombre": "pollo campesino", "precio": 42000},
-    "A2": {"nombre": "sancocho de gallina", "precio": 38000},
-    "A3": {"nombre": "chuleton de cerdo", "precio": 45000},
-    "A4": {"nombre": "costilla san luis", "precio": 48000},
-    "A5": {"nombre": "costillon montañero", "precio": 50000},
-    "A6": {"nombre": "sancocho trifasico", "precio": 52000},
-    "A7": {"nombre": "tilapia a la parrilla", "precio": 40000},
-    "A9": {"nombre": "tilapia frita", "precio": 38000},
-    "A10": {"nombre": "salmon", "precio": 60000}
-}
+from datos_rest import menu_almuerzos, menu_bebidas, menu_total
+from añadir_dicc import imprimir_productos, opcion_menu  # diccionarios
 
-menu_bebidas = {
-    "B1": {"nombre": "limonada natural", "precio": 8000},
-    "B2": {"nombre": "limonada de coco", "precio": 10000},
-    "B3": {"nombre": "limonada de kiwi", "precio": 11000},
-    "B4": {"nombre": "limonada cerezada", "precio": 10000},
-    "B5": {"nombre": "jarra de mandarina", "precio": 15000},
-    "B6": {"nombre": "jarra de coco", "precio": 18000},
-    "B7": {"nombre": "jarra de jugo natural", "precio": 14000},
-    "B8": {"nombre": "gaseosa personal", "precio": 5000},
-    "B9": {"nombre": "gaseosa 1.5", "precio": 8000},
-    "B10": {"nombre": "botella aguardiente", "precio": 90000}
-}
+# for categoria, productos in menu_total.items():
+#     titulo = categoria.replace("_"," ").title()
+#     print(f"\n=== {titulo} ===")
+
+#     for codigo, info in productos.items():
+#         nombre = info["nombre"].title()
+#         precio = info["precio"]
+#         print(f"{codigo:4} {nombre:25} ${precio:,}")
+
 
 def show_menu(menu,titulo):
     """
@@ -52,10 +39,8 @@ def show_menu(menu,titulo):
     for key, valor in menu.items():
         print(f"{key}. {valor["nombre"]}")
 
-    
-
-show_menu(menu_almuerzos, "Almuerzos")
-show_menu(menu_bebidas, "BEBIDAS")
+# show_menu(menu_almuerzos, "Almuerzos")
+# show_menu(menu_bebidas, "BEBIDAS")
 
 def choose_disk(almuerzos, bebidas, seleccion):
     """
@@ -104,39 +89,57 @@ def show_check (platos):
         contador += 1
         print(f"{contador}. {item['nombre']} - ${item['precio']}")
     
-# Mensajes en la consola
+while True:
 
-print("=== GENERADORA DE CUENTAS DE UN RESTAURANTE ===")
+    # Mensajes en la consola
 
-# Funcion de mostrar el menu 
-show_menu(menu_almuerzos, "Almuerzos")
-show_menu(menu_bebidas, "BEBIDAS")
+    print("=== GENERADORA DE CUENTAS DE UN RESTAURANTE ===")
 
-# Funcion de selecionar los platos 
-print("\nPOR FAVOR SELECCIONE LOS INSUMOS QUE CONSUMIO")
+    # Funcion de mostrar el menu 
+    opcion_cliente = input(
+    "\nSeleccione el item del menu que desea conocer:\n"
+    "1. Almuerzos\n"
+    "2. Bebidas\n"
+    "3. Ver todo el menu\n"
+    "Opción: "
+    )
 
-seleccion = input("Selecciona los items de los alimentos y bebidas que consumiste\nseparados por comas (1,2,3...): ").upper()
-platos_seleccionados = choose_disk(menu_almuerzos, menu_bebidas, seleccion)
+    opcion_menu(menu_total, opcion_cliente)
 
-# Mostrar factura con el valor y propina (si es el caso)
-print("\n === FACTURA ===")
-show_check(platos_seleccionados)
-cuenta = valor_cuenta(platos_seleccionados)
-print(f"Valor de la cuenta es: $ {cuenta:.2f}")
+    # show_menu(menu_almuerzos, "Almuerzos")
+    # show_menu(menu_bebidas, "BEBIDAS")
 
-propina = input("¿Desea agregar propina? (SI/NO): ").upper()
+    # Funcion de selecionar los platos 
+    print("\nPOR FAVOR SELECCIONE LOS INSUMOS QUE CONSUMIO")
 
-if propina == "SI":
-    porcentaje = float(input("Ingrese el porcentaje que desea \n añadir a su propina: %  "))
-else:
-    porcentaje = 0
+    seleccion = input("Selecciona los items de los alimentos y bebidas que consumiste\nseparados por comas (1,2,3...): ").upper()
+    platos_seleccionados = choose_disk(menu_almuerzos, menu_bebidas, seleccion)
 
-valor_propina, valor_total = calcular_valor_propina(cuenta, porcentaje, propina)
+    # Mostrar factura con el valor y propina (si es el caso)
+    print("\n === FACTURA ===")
+    show_check(platos_seleccionados)
+    cuenta = valor_cuenta(platos_seleccionados)
+    print(f"Valor de la cuenta es: $ {cuenta:.2f}")
 
+    propina = input("¿Desea agregar propina? (SI/NO): ").upper()
 
-if propina == "SI":
-    print(f"Valor propina: $ {valor_propina:.2f}")
-    print(f"El valor total de su factura es: $ {valor_total:.2f}")
-else:
-    print(f"El valor de su cuenta es: $ {cuenta:.2f}")
+    if propina == "SI":
+        porcentaje = float(input("Ingrese el porcentaje que desea \n añadir a su propina: %  "))
+    else:
+        porcentaje = 0
 
+    valor_propina, valor_total = calcular_valor_propina(cuenta, porcentaje, propina)
+
+    # Validador si el usuario ingresa la propina
+    if propina == "SI":
+        print(f"Valor propina: $ {valor_propina:.2f}")
+        print(f"El valor total de su factura es: $ {valor_total:.2f}")
+    else:
+        print(f"El valor de su cuenta es: $ {cuenta:.2f}")
+
+    # Respuesta para continuar o salir del ciclo 
+    continuar = input("\nDesea hacer generar otra factura? (SI/NO): ").upper()
+
+    if continuar != "SI":
+        print("Gracias por su compra, vuelva pronto 👋")
+        break
