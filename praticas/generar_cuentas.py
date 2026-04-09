@@ -18,7 +18,8 @@ Proceso que debe seguir el programa
     5. mensaje de gracias por su compra y despedida
 """ 
 
-from datos_rest import menu_almuerzos, menu_bebidas, menu_total  # diccionarios
+from datos_rest import menu_almuerzos, menu_bebidas, menu_total
+from añadir_dicc import imprimir_productos, opcion_menu  # diccionarios
 
 # for categoria, productos in menu_total.items():
 #     titulo = categoria.replace("_"," ").title()
@@ -38,10 +39,8 @@ def show_menu(menu,titulo):
     for key, valor in menu.items():
         print(f"{key}. {valor["nombre"]}")
 
-    
-
-show_menu(menu_almuerzos, "Almuerzos")
-show_menu(menu_bebidas, "BEBIDAS")
+# show_menu(menu_almuerzos, "Almuerzos")
+# show_menu(menu_bebidas, "BEBIDAS")
 
 def choose_disk(almuerzos, bebidas, seleccion):
     """
@@ -97,8 +96,18 @@ while True:
     print("=== GENERADORA DE CUENTAS DE UN RESTAURANTE ===")
 
     # Funcion de mostrar el menu 
-    show_menu(menu_almuerzos, "Almuerzos")
-    show_menu(menu_bebidas, "BEBIDAS")
+    opcion_cliente = input(
+    "\nSeleccione el item del menu que desea conocer:\n"
+    "1. Almuerzos\n"
+    "2. Bebidas\n"
+    "3. Ver todo el menu\n"
+    "Opción: "
+    )
+
+    opcion_menu(menu_total, opcion_cliente)
+
+    # show_menu(menu_almuerzos, "Almuerzos")
+    # show_menu(menu_bebidas, "BEBIDAS")
 
     # Funcion de selecionar los platos 
     print("\nPOR FAVOR SELECCIONE LOS INSUMOS QUE CONSUMIO")

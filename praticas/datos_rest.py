@@ -24,6 +24,6 @@ menu_bebidas = {
 }
 
 menu_total = {
-    "menu_almuerzos": menu_almuerzos,
-    "menu_bebidas": menu_bebidas
+    "almuerzos": menu_almuerzos,
+    "bebidas": menu_bebidas
 }
