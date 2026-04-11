@@ -4,7 +4,9 @@ os.system("cls")
 # Ejercicio que verificara si un correo y una contraseña ingresada por el usuario son validas
 
 def check_user (email):
-
+    """
+    Valida el correo ingresado por el usuario
+    """
     pattern = r"[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,}"
 
     match = re.fullmatch (pattern, email)
@@ -16,7 +18,9 @@ def check_user (email):
     return match
     
 def check_password (password):
-
+    """
+    Valida la contrasena ingresada por el usuario
+    """
     pattern = r"^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*])[\w.!@#$%&*-]{8,}$"
     match = re.fullmatch(pattern, password)
     if match:
@@ -33,7 +37,7 @@ while True:
     while True:
         correo = input("Por favor ingrese su correo electrónico:\n ")
         user = check_user(correo)
-
+        # si es correcto pasa al otro loop interno
         if user:
             break
 
@@ -47,9 +51,9 @@ while True:
         )
 
         password = check_password(contrasena)
-
+        # sale del loop interno ya que valido que es correcto
         if password:
             break
-
+    # Cuando ambos ya son correctos sale del ciclo que controla el programa y termina la ejecucion
     print("El correo y la contraseña son válidos, hasta pronto... 👋")
     break
