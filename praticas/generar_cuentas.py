@@ -18,31 +18,18 @@ Proceso que debe seguir el programa
     5. mensaje de gracias por su compra y despedida
 """ 
 
-# diccionarios
-menu_almuerzos = {
-    "A1": {"nombre": "pollo campesino", "precio": 42000},
-    "A2": {"nombre": "sancocho de gallina", "precio": 38000},
-    "A3": {"nombre": "chuleton de cerdo", "precio": 45000},
-    "A4": {"nombre": "costilla san luis", "precio": 48000},
-    "A5": {"nombre": "costillon montañero", "precio": 50000},
-    "A6": {"nombre": "sancocho trifasico", "precio": 52000},
-    "A7": {"nombre": "tilapia a la parrilla", "precio": 40000},
-    "A9": {"nombre": "tilapia frita", "precio": 38000},
-    "A10": {"nombre": "salmon", "precio": 60000}
-}
+from datos_rest import menu_almuerzos, menu_bebidas, menu_total
+from añadir_dicc import imprimir_productos, opcion_menu  # diccionarios
 
-menu_bebidas = {
-    "B1": {"nombre": "limonada natural", "precio": 8000},
-    "B2": {"nombre": "limonada de coco", "precio": 10000},
-    "B3": {"nombre": "limonada de kiwi", "precio": 11000},
-    "B4": {"nombre": "limonada cerezada", "precio": 10000},
-    "B5": {"nombre": "jarra de mandarina", "precio": 15000},
-    "B6": {"nombre": "jarra de coco", "precio": 18000},
-    "B7": {"nombre": "jarra de jugo natural", "precio": 14000},
-    "B8": {"nombre": "gaseosa personal", "precio": 5000},
-    "B9": {"nombre": "gaseosa 1.5", "precio": 8000},
-    "B10": {"nombre": "botella aguardiente", "precio": 90000}
-}
+# for categoria, productos in menu_total.items():
+#     titulo = categoria.replace("_"," ").title()
+#     print(f"\n=== {titulo} ===")
+
+#     for codigo, info in productos.items():
+#         nombre = info["nombre"].title()
+#         precio = info["precio"]
+#         print(f"{codigo:4} {nombre:25} ${precio:,}")
+
 
 def show_menu(menu,titulo):
     """
@@ -50,12 +37,10 @@ def show_menu(menu,titulo):
     """
     print(f"\n === {titulo} ===")
     for key, valor in menu.items():
-        print(f"{key}. {valor["nombre"]}")
+        print(f"{key}. {valor['nombre']}")
 
-    
-
-show_menu(menu_almuerzos, "Almuerzos")
-show_menu(menu_bebidas, "BEBIDAS")
+# show_menu(menu_almuerzos, "Almuerzos")
+# show_menu(menu_bebidas, "BEBIDAS")
 
 def choose_disk(almuerzos, bebidas, seleccion):
     """
@@ -111,8 +96,18 @@ while True:
     print("=== GENERADORA DE CUENTAS DE UN RESTAURANTE ===")
 
     # Funcion de mostrar el menu 
-    show_menu(menu_almuerzos, "Almuerzos")
-    show_menu(menu_bebidas, "BEBIDAS")
+    opcion_cliente = input(
+    "\nSeleccione el item del menu que desea conocer:\n"
+    "1. Almuerzos\n"
+    "2. Bebidas\n"
+    "3. Ver todo el menu\n"
+    "Opción: "
+    )
+
+    opcion_menu(menu_total, opcion_cliente)
+
+    # show_menu(menu_almuerzos, "Almuerzos")
+    # show_menu(menu_bebidas, "BEBIDAS")
 
     # Funcion de selecionar los platos 
     print("\nPOR FAVOR SELECCIONE LOS INSUMOS QUE CONSUMIO")
