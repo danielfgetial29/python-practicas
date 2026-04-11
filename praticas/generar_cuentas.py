@@ -37,7 +37,7 @@ def show_menu(menu,titulo):
     """
     print(f"\n === {titulo} ===")
     for key, valor in menu.items():
-        print(f"{key}. {valor["nombre"]}")
+        print(f"{key}. {valor['nombre']}")
 
 # show_menu(menu_almuerzos, "Almuerzos")
 # show_menu(menu_bebidas, "BEBIDAS")
