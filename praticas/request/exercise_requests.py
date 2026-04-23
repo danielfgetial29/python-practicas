@@ -33,6 +33,32 @@ auth_data = {"title": "foo","body": "bar","userId": 1}
 resp = requests.post(url, json=auth_data)
 print(resp.status_code)
 
+# ejerccio con una funcion pero esta vez utilizando requests
+
+def show_data_api(id_data, api):
+    """
+    Traer toda la data de un id ingresado
+    """
+    try:
+        with requests.get(api) as resp:
+            data = resp.json()
+
+            for d in data:
+                if d["id"] == id_data:
+                    print(f"\n Post #{d['id']}")
+                    print(f"Usuario: {d['userId']}")
+                    print(f"Título: {d['title']}")
+                    print(f"Contenido: {d['body']}")
+                    return
+            print("ID no encontrad...")
+    except requests.exceptions.RequestException as e:
+        print(f"Error en la solicitud {e}")
+
+post_id = int(
+    input("Por favor ingrese un numero de id valido, para obtener la informacion necesaria: \n")
+)
+show_data_api(post_id, url)
+
 # Peticiones POST envueltas en un try para manejar los errores
 try:
     auth_data = {"title": "foo","body": "bar","userId": 1}
