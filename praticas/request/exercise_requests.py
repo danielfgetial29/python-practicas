@@ -35,29 +35,30 @@ print(resp.status_code)
 
 # ejerccio con una funcion pero esta vez utilizando requests
 
-def show_data_api(id_data, api):
+def show_data_api(id_data):
     """
-    Traer toda la data de un id ingresado
+    Trae todos los datos de un id especifico
     """
     try:
-        with requests.get(api) as resp:
-            data = resp.json()
+        url = f"https://jsonplaceholder.typicode.com/posts/{id_data}"
+        resp = requests.get(url)
+        resp.raise_for_status()
 
-            for d in data:
-                if d["id"] == id_data:
-                    print(f"\n Post #{d['id']}")
-                    print(f"Usuario: {d['userId']}")
-                    print(f"Título: {d['title']}")
-                    print(f"Contenido: {d['body']}")
-                    return
-            print("ID no encontrad...")
+        data = resp.json()
+
+        print(f"\n📌 Post #{data['id']}")
+        print(f"👤 Usuario: {data['userId']}")
+        print(f"📝 Título: {data['title']}")
+        print(f"📄 Contenido: {data['body']}")
+
     except requests.exceptions.RequestException as e:
-        print(f"Error en la solicitud {e}")
+        print(f"❌ Error: {e}")
+
 
 post_id = int(
     input("Por favor ingrese un numero de id valido, para obtener la informacion necesaria: \n")
 )
-show_data_api(post_id, url)
+show_data_api(post_id)
 
 # Peticiones POST envueltas en un try para manejar los errores
 try:
