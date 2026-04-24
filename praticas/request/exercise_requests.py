@@ -37,7 +37,8 @@ print(resp.status_code)
 
 def show_data_api(id_data):
     """
-    Trae todos los datos de un id especifico
+    Trae todos los datos de un id especifico intengrando {id_data} al 
+    final de la API
     """
     try:
         url = f"https://jsonplaceholder.typicode.com/posts/{id_data}"
@@ -61,9 +62,23 @@ post_id = int(
 show_data_api(post_id)
 
 # Peticiones POST envueltas en un try para manejar los errores
+print("\n=== POST ====")
 try:
     auth_data = {"title": "foo","body": "bar","userId": 1}
     resp = requests.post(url, json=auth_data)
     print(resp.status_code)
 except requests.exceptions.RequestException as e:
     print(f"Error en la solicitud {e}")
+
+# cabeceras de la respuestas
+print("\n=== headers ===")
+r = requests.get(url)
+print(r.headers)
+print("\nTipo:", r.headers.get("Content-Type"))
+print("Límite:", r.headers.get("x-ratelimit-limit"))
+print("Restantes:", r.headers.get("x-ratelimit-remaining"))
+
+print("\n=== COOKIES ===")
+
+r = requests.get(url)
+print(r.cookies)
