@@ -74,6 +74,7 @@ except requests.exceptions.RequestException as e:
 print("\n=== headers ===")
 r = requests.get(url)
 print(r.headers)
+print("\n=== headers 2 ===")
 print("\nTipo:", r.headers.get("Content-Type"))
 print("Límite:", r.headers.get("x-ratelimit-limit"))
 print("Restantes:", r.headers.get("x-ratelimit-remaining"))
@@ -82,3 +83,11 @@ print("\n=== COOKIES ===")
 
 r = requests.get(url)
 print(r.cookies)
+
+print("\n=== PUT ====")
+try:
+    payload = {"title": "foo","body": "bar","userId": 1}
+    resp = requests.put(url, json= payload)
+    print(resp.status_code)
+except requests.exceptions.RequestException as e:
+    print(f"Error en la solicitud {e}")
