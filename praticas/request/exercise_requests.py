@@ -44,7 +44,7 @@ def show_data_api(id_data):
         url = f"https://jsonplaceholder.typicode.com/posts/{id_data}"
         resp = requests.get(url)
         resp.raise_for_status()
-
+  
         data = resp.json()
 
         print(f"\n📌 Post #{data['id']}")

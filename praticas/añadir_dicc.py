@@ -6,7 +6,7 @@ from datos_rest import menu_total, menu_almuerzos
 """
 Programa para solicitar al usuario elegir los platos del menu
 Seleccionar que tipo de menu desea ver (Almuerzos o bebidas)
-Ingresar 
+Ingresar
 """ 
 
 
