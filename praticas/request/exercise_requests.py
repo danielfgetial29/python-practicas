@@ -84,10 +84,27 @@ print("\n=== COOKIES ===")
 r = requests.get(url)
 print(r.cookies)
 
+
+api = "https://jsonplaceholder.typicode.com/posts/1"
 print("\n=== PUT ====")
+
 try:
-    payload = {"title": "foo","body": "bar","userId": 1}
-    resp = requests.put(url, json= payload)
+    payload = {"title": "foo","body": "bar","userId": 1, "id": 3}
+    resp = requests.put(api, json= payload)
     print(resp.status_code)
+except requests.exceptions.RequestException as e:
+    print(f"Error en la solicitud {e}")
+
+print("=== PUT INDIVIDUALES === ")
+
+try:
+    posts = [
+        {"id": 1, "title": "Nuevo Titulo"},
+        {"id": 2, "title": "Nuevo Titulo 2"}
+    ]
+    for post in posts:
+        api_2 = f"https://jsonplaceholder.typicode.com/posts/{post['id']}"
+        r = requests.put(api_2, json=posts)
+        print(f"Estado de la solicitud: {r.status_code}")
 except requests.exceptions.RequestException as e:
     print(f"Error en la solicitud {e}")
