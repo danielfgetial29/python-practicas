@@ -10,27 +10,18 @@ class Calculadora:
         self.numero2 = numero2
 
     # Metodos
-    def sumar(self, valor1, valor2):
+    def sumar(self):
         """
         Metodo para sumar los valores ingresados
         """
-        self.numero1 = valor1
-        self.numero2 = valor2
+        return self.numero1 + self.numero2
 
-        resultado = valor1 + valor2
-
-        return resultado
-
-    def restar(self, valor1, valor2):
+    def restar(self):
         """
         Metodo de resta para los valores ingresados
-        """
-        self.numero1 = valor1
-        self.numero2 = valor2
+        """        
+        return self.numero1 - self.numero2
 
-        resultado = valor1 - valor2
-
-        return resultado
 
 print("## CALCULADORA ## ")
 
@@ -51,25 +42,20 @@ while True:
 
 
     if eleccion == 1:
-        resultado = operacion.sumar(num1, num2)
+        resultado = operacion.sumar()
         break
 
     elif eleccion == 2:
-        resultado = operacion.restar(num1, num2)
+        resultado = operacion.restar()
         break
 
     else:
         print("Operacion no valida")
-
-
-
-
 
 print(f"""
         CALCULADORA:\n
         Primer numero ingresado: {operacion.numero1}\n
         Segundo numero ingresado: {operacion.numero2}\n\n
         RESULTADO = {resultado}
-        
         """)
 
