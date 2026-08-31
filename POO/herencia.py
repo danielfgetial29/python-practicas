@@ -23,6 +23,11 @@ daniel = Empleado("Daniel", 25, "Colombiano", "Programador", 800000000)
 
 daniel.hablar()
 
+# para poder ver de que clase es hija una clase 
+print(Empleado.__bases__)
+
+# Ver que clase descienden de una
+print(Persona.__subclasses__())
 
 # class Padre:
 #     def __init__(self, atributoPadre1, atributoPadre2):
