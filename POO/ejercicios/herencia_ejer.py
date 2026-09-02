@@ -46,3 +46,7 @@ class AnimalDomestico(Animal, Mascota):
 mascota1 = AnimalDomestico("Max", 5, "Perro", "Daniel", "Domestico", 20, "Veterinaria Central")
 
 mascota1.presentacion()
+print("==== Usando .mro() ===")
+print(AnimalDomestico.mro())
+print("==== Usando .__mro__ ===")
+print(AnimalDomestico.__mro__)
