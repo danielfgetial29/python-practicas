@@ -19,9 +19,25 @@ class Empleado(Persona):
         self.trabajo = trabajo
         self.salario = salario
 
-daniel = Empleado("Daniel", 25, "Colombiano", "Programador", 800000000)
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, nacionalidad, carrera, notas, universidad):
+        super().__init__(nombre, edad, nacionalidad)
+        self.carrera = carrera
+        self.notas = notas
+        self.universidad = universidad
 
+    def informacion(self):
+        return print(f"Hola soy {self.nombre} y tengo {self.edad} años\n",
+                     f"Actualmente estudio la carrera de {self.carrera} en la {self.universidad}\n",
+                     f"Y mi promedio de notas es de {self.notas}")
+
+daniel = Empleado("Daniel", 25, "Colombiano", "Programador", 800000000)
 daniel.hablar()
+
+#clase estudiante (objetos)
+mi_estudiante = Estudiante("Daniel", 25, "Colombiano", "Desarrollador", 5.0, "Universidad del Valle")
+mi_estudiante.informacion()
+
 
 # para poder ver de que clase es hija una clase 
 print(Empleado.__bases__)
