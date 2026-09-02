@@ -27,9 +27,9 @@ class Estudiante(Persona):
         self.universidad = universidad
 
     def informacion(self):
-        return print(f"Hola soy {self.nombre} y tengo {self.edad} años\n",
-                     f"Actualmente estudio la carrera de {self.carrera} en la {self.universidad}\n",
-                     f"Y mi promedio de notas es de {self.notas}")
+        return (f"Hola soy {self.nombre} y tengo {self.edad} años\n",
+            f"Actualmente estudio la carrera de {self.carrera} en la {self.universidad}\n",
+            f"Y mi promedio de notas es de {self.notas}")
 
 daniel = Empleado("Daniel", 25, "Colombiano", "Programador", 800000000)
 daniel.hablar()
