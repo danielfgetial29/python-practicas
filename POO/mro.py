@@ -15,8 +15,8 @@ class B(E):
         print("Saludo desde B..")
 
 class C(A):
-    # def hablar(self):
-    #     print("Saludo desde C..")
+    def hablar(self):
+        print("Saludo desde C..")
     pass
 class D(C,B):
     pass
@@ -27,6 +27,7 @@ prueba_mro = D()
 
 prueba_mro.hablar()
 
+# B.hablar(prueba_mro)
 #.mro() Metodo que devuelve una lista
 print(D.mro())
 
