@@ -52,10 +52,12 @@ def hacer_sonidos(animal):
 
 perro = Perro()
 gato = Gato()
-# hacer_sonidos(perro)
+hacer_sonidos(perro)
+
 #En un ciclo for
 for animal in Perro(), Gato():
     animal.sonido()
+    
 # En una lista con las clases
 animales = [Gato(), Perro()]
 for animal in animales:
